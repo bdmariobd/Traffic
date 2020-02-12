@@ -12,7 +12,8 @@ public class Road extends SimulatedObject {
 	private int length,maxSpeed,actualMaxSpeed, contLimit;
 	private Weather weather;
 	private List<Vehicle> vehicleList;
-	private int test;
+	// comentario de prueba1
+	// comentario de prueba2
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
