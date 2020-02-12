@@ -14,7 +14,7 @@ public abstract class Road extends SimulatedObject {
 	private List<Vehicle> vehicleList;
 
 
-=======
+
 	abstract void reduceTotalContamination();
 	abstract void updateSpeedLimit();
 	abstract int calculateVehicleSpeed(Vehicle v);

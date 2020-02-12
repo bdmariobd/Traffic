@@ -13,5 +13,15 @@ public class InterCityRoad extends Road {
 	void reduceTotalContamination() { //que aberracion , se pueden cambiar a protected
 		setTotalCont((int)((100.0-getWeather().getContInterCity())/100.0)*getTotalCont());
 	}
+	@Override
+	void updateSpeedLimit() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	int calculateVehicleSpeed(Vehicle v) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
