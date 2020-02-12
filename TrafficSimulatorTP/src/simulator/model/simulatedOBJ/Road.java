@@ -13,9 +13,12 @@ public abstract class Road extends SimulatedObject {
 	private Weather weather;
 	private List<Vehicle> vehicleList;
 
+
+=======
 	abstract void reduceTotalContamination();
 	abstract void updateSpeedLimit();
 	abstract int calculateVehicleSpeed(Vehicle v);
+
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
@@ -52,7 +55,7 @@ public abstract class Road extends SimulatedObject {
 		//vehicleList.sort;
 	}
 	//pruebas del github
-	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
+	void exit(Vehicle v) { // Igual se puede aÃ±adir una exception ya que remove es boolean
 		vehicleList.remove(v);
 	}
 	void setWeather(Weather w)throws IncorrectValues {
@@ -63,13 +66,23 @@ public abstract class Road extends SimulatedObject {
 		if(c<0) throw new IncorrectValues("C is negative");
 		totalCont+=c;
 	}
-	
 
 	@Override
 	public JSONObject report() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void setTotalCont(int totalCont) {
+		this.totalCont = totalCont;
+	}
+	public int getTotalCont() {
+		return totalCont;
+	}
+	public Weather getWeather() {
+		return weather;
+	}
+
 	
 
 }
