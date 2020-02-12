@@ -7,12 +7,15 @@ import org.json.JSONObject;
 import simulator.exceptions.IncorrectValues;
 import simulator.model.Weather;
 
-public class Road extends SimulatedObject {
+public abstract class Road extends SimulatedObject {
 	private Junction srcJunc, destJunc;
-	private int length,maxSpeed,actualMaxSpeed, contLimit;
+	private int length,maxSpeed,actualMaxSpeed, contLimit,totalCont;
 	private Weather weather;
 	private List<Vehicle> vehicleList;
 
+	abstract void reduceTotalContamination();
+	abstract void updateSpeedLimit();
+	abstract int calculateVehicleSpeed(Vehicle v);
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
@@ -27,6 +30,7 @@ public class Road extends SimulatedObject {
 		this.contLimit=contLimit;
 		this.length=length;
 		this.weather=weather;
+		totalCont=0;
 	}
 	void enter(Vehicle v) throws IncorrectValues {
 		if(!v.initial()) throw new IncorrectValues("Unable to join the road");
@@ -34,8 +38,18 @@ public class Road extends SimulatedObject {
 	}
 	@Override
 	void advance(int time) {
-		// TODO Auto-generated method stub
-
+		reduceTotalContamination();
+		updateSpeedLimit();
+		for(Vehicle v : vehicleList) {
+			try {
+				v.setSpeed(calculateVehicleSpeed(v));
+			} catch (IncorrectValues e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			v.advance(time);
+		}
+		//vehicleList.sort;
 	}
 	//pruebas del github
 	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
@@ -45,13 +59,17 @@ public class Road extends SimulatedObject {
 		if(w==null) throw new IncorrectValues("Weather null");
 		weather=w;
 	}
-	void addContamination(int c) {
-		
+	void addContamination(int c) throws IncorrectValues {
+		if(c<0) throw new IncorrectValues("C is negative");
+		totalCont+=c;
 	}
+	
+
 	@Override
 	public JSONObject report() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

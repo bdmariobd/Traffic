@@ -2,7 +2,7 @@ package simulator.model.simulatedOBJ;
 
 import org.json.JSONObject;
 
-public abstract class SimulatedObject {
+public abstract class SimulatedObject  {
 
 	protected String _id;
 
