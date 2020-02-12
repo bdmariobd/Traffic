@@ -38,10 +38,16 @@ public class Road extends SimulatedObject {
 
 	}
 	//pruebas del github
-	void testgit(int time) {
-		time=1+1;
+	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
+		vehicleList.remove(v);
 	}
-	
+	void setWeather(Weather w)throws IncorrectValues {
+		if(w==null) throw new IncorrectValues("Weather null");
+		weather=w;
+	}
+	void addContamination(int c) {
+		
+	}
 	@Override
 	public JSONObject report() {
 		// TODO Auto-generated method stub
