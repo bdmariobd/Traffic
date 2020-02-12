@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Vehicle extends SimulatedObject {
+public class Vehicle extends SimulatedObject { 
 	private List<Junction> itinerary;
 	private int maxSpeed,Speed, location,contClass,totalContClass,totalDistance;
 	private VehicleStatus status;
@@ -66,5 +66,10 @@ public class Vehicle extends SimulatedObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public boolean compareTo(Vehicle v) {
+		return false;
+		
+	}
+	
 }
