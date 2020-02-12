@@ -3,7 +3,7 @@ package simulator.exceptions;
 public class test {
 
 	public test() {
-		// TODO Auto-generated constructor stub
+		// comentario de pruebas en la clase q hice en el master, voy a commitear
 	}
 
 }
