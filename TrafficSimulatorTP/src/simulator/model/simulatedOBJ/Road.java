@@ -12,8 +12,7 @@ public class Road extends SimulatedObject {
 	private int length,maxSpeed,actualMaxSpeed, contLimit;
 	private Weather weather;
 	private List<Vehicle> vehicleList;
-	// comentario de prueba1
-	// comentario de prueba2
+
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
@@ -38,7 +37,17 @@ public class Road extends SimulatedObject {
 		// TODO Auto-generated method stub
 
 	}
-	
+	//pruebas del github
+	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
+		vehicleList.remove(v);
+	}
+	void setWeather(Weather w)throws IncorrectValues {
+		if(w==null) throw new IncorrectValues("Weather null");
+		weather=w;
+	}
+	void addContamination(int c) {
+		
+	}
 	@Override
 	public JSONObject report() {
 		// TODO Auto-generated method stub
