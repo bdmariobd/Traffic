@@ -12,8 +12,7 @@ public class Road extends SimulatedObject {
 	private int length,maxSpeed,actualMaxSpeed, contLimit;
 	private Weather weather;
 	private List<Vehicle> vehicleList;
-	// comentario de prueba1
-	// comentario de prueba2
+
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
@@ -37,6 +36,10 @@ public class Road extends SimulatedObject {
 	void advance(int time) {
 		// TODO Auto-generated method stub
 
+	}
+	//pruebas del github
+	void testgit(int time) {
+		time=1+1;
 	}
 	
 	@Override
