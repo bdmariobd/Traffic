@@ -8,13 +8,15 @@ import simulator.model.VehicleStatus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class Vehicle extends SimulatedObject { 
+public class Vehicle extends SimulatedObject implements Comparable<Vehicle> { 
 	private List<Junction> itinerary;
 	private int maxSpeed,Speed, location,contClass,totalContClass,totalDistance;
 	private VehicleStatus status;
 	private Road road;
+	
 	
 	Vehicle(String id, int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues{
 		super(id);
@@ -67,9 +69,11 @@ public class Vehicle extends SimulatedObject {
 		return null;
 	}
 	
-	public boolean compareTo(Vehicle v) {
-		return false;
-		
+	@Override
+	public int compareTo(Vehicle v) {
+		if(this.location==v.location) return 0;
+		if(this.location<v.location) return -1;
+		else return 1;
 	}
 	
 }

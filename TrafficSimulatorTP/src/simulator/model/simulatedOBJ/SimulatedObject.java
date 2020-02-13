@@ -22,4 +22,9 @@ public abstract class SimulatedObject  {
 	abstract void advance(int time);
 
 	abstract public JSONObject report();
+
+	public int compareTo(SimulatedObject o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

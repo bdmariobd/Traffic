@@ -1,5 +1,6 @@
 package simulator.model.simulatedOBJ;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public abstract class Road extends SimulatedObject {
 			}
 			v.advance(time);
 		}
-		//vehicleList.sort;
+		Collections.sort(vehicleList);
 	}
 	//pruebas del github
 	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
@@ -81,6 +82,11 @@ public abstract class Road extends SimulatedObject {
 	}
 	public Weather getWeather() {
 		return weather;
+	}
+	@Override
+	public int compareTo(SimulatedObject o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
