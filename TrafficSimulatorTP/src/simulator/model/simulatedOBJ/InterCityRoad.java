@@ -16,12 +16,15 @@ public class InterCityRoad extends Road {
 	@Override
 	void updateSpeedLimit() {
 		// TODO Auto-generated method stub
+		if(getTotalCont()>getContLimit()) setActualMaxSpeed((int)(getMaxSpeed()*0.5));
+		else setActualMaxSpeed((getMaxSpeed()));
 		
 	}
 	@Override
 	int calculateVehicleSpeed(Vehicle v) {
 		// TODO Auto-generated method stub
-		return 0;
+		if(getWeather()==Weather.STORM) return (int)(getActualMaxSpeed()*0.8);
+		return getActualMaxSpeed();
 	}
 
 }

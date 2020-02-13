@@ -75,5 +75,8 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		if(this.location<v.location) return -1;
 		else return 1;
 	}
+	public int getContClass() {
+		return contClass;
+	}
 	
 }

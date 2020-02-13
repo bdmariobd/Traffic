@@ -88,7 +88,22 @@ public abstract class Road extends SimulatedObject {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	public int getContLimit() {
+		return contLimit;
+	}
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+	public int getActualMaxSpeed() {
+		return actualMaxSpeed;
+	}
+	public void setActualMaxSpeed(int actualMaxSpeed) {
+		this.actualMaxSpeed = actualMaxSpeed;
+	}
+	
 	
 
 }
