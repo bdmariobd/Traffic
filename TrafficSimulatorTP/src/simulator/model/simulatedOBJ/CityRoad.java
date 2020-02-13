@@ -27,6 +27,7 @@ public class CityRoad extends Road {
 	int calculateVehicleSpeed(Vehicle v) {
 		// TODO Auto-generated method stub
 		return (int)((11.0-v.getContClass()/11.0)*getActualMaxSpeed());
+		
 	}
 
 }
