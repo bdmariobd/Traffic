@@ -37,7 +37,16 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	public Boolean initial() {
 		return location==0 && Speed==0;
 	}
+	public void enterARoad() throws IncorrectValues {
+		road.enter(this);
+	}
 	
+	public Road getRoad() {
+		return road;
+	}
+	public void setRoad(Road road) {
+		this.road = road;
+	}
 	//public/protected??
 	public void setSpeed(int speed) throws IncorrectValues {
 		if(speed<0) throw new IncorrectValues("Negative Speed");

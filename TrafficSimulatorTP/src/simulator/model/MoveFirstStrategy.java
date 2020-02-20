@@ -15,6 +15,7 @@ public class MoveFirstStrategy implements DequeuingStrategy {
 	public List<Vehicle> dequeue(List<Vehicle> q) {
 		
 		List<Vehicle> v = Collections.emptyList();
+		//creo que esta mal, este es el ultimo y quiero el primero
 		v.add(q.get(q.size()-1));
 		return v;
 	}

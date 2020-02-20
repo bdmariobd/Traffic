@@ -103,7 +103,16 @@ public abstract class Road extends SimulatedObject {
 	public void setActualMaxSpeed(int actualMaxSpeed) {
 		this.actualMaxSpeed = actualMaxSpeed;
 	}
+	public List<Vehicle> getVehicleList() {
+		return vehicleList;
+	}
+	boolean checkEntryRoad(Junction j) {
+		return destJunc==j;
+	}
+	public Junction getDestJunc() {
+		return destJunc;
+	}
 	
-	
+
 
 }
