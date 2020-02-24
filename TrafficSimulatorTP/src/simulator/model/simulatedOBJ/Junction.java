@@ -23,6 +23,8 @@ public class Junction extends SimulatedObject {
 		super(id);
 		if(lsStrategy==null || dqeStrategy==null) throw new IncorrectValues("La estrategia es null");
 		if(xCoor<0 || yCoor<0)throw new IncorrectValues("Coordenadas negativas");
+		this.lStrategy=lsStrategy;
+		this.dqStrategy=dqeStrategy;
 	}
 
 	void addIncommingRoad(Road r) { // TODO Tratar los .add() ;

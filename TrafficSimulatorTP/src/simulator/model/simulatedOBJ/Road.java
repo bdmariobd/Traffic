@@ -21,6 +21,7 @@ public abstract class Road extends SimulatedObject {
 	abstract int calculateVehicleSpeed(Vehicle v);
 
 	
+	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
 		if(maxSpeed<0) throw new IncorrectValues("Negative Speed");
@@ -54,6 +55,9 @@ public abstract class Road extends SimulatedObject {
 			v.advance(time);
 		}
 		Collections.sort(vehicleList);
+	}
+	public Junction getSrcJunc() {
+		return srcJunc;
 	}
 	//pruebas del github
 	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
