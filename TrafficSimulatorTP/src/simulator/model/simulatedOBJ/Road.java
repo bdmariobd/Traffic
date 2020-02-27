@@ -42,7 +42,8 @@ public abstract class Road extends SimulatedObject {
 		vehicleList.add(v);
 	}
 	@Override
-	void advance(int time) {
+	
+	public void advance(int time) {
 		reduceTotalContamination();
 		updateSpeedLimit();
 		for(Vehicle v : vehicleList) {
@@ -63,7 +64,7 @@ public abstract class Road extends SimulatedObject {
 	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
 		vehicleList.remove(v);
 	}
-	void setWeather(Weather w)throws IncorrectValues {
+	public void setWeather(Weather w)throws IncorrectValues {
 		if(w==null) throw new IncorrectValues("Weather null");
 		weather=w;
 	}
@@ -116,6 +117,7 @@ public abstract class Road extends SimulatedObject {
 	public Junction getDestJunc() {
 		return destJunc;
 	}
+	
 	
 
 

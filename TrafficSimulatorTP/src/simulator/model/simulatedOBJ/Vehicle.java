@@ -19,7 +19,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	private Road road;
 	
 	
-	Vehicle(String id, int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues{
+	public Vehicle(String id, int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues{
 		super(id);
 		// TODO complete
 		correctValues(maxSpeed, contClass, itinerary);

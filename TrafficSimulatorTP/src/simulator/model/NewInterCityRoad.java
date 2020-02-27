@@ -9,13 +9,13 @@ import simulator.model.simulatedOBJ.Road;
 public class NewInterCityRoad extends NewRoadEvent {
 	
 	
-	public NewInterCityRoad(int time, String id, Junction srcJun, Junction destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
+	public NewInterCityRoad(int time, String id, String srcJun, String destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
 		super(time, id, srcJun, destJunc, length, co2Limit, maxSpeed, weather);
 	}
 
 	@Override
 	Road createRoadObject() throws IncorrectValues {
 		// TODO Auto-generated method stub
-		return new InterCityRoad(id, srcJunc, destJunc, length, co2Limit, maxSpeed, weather);
+		return new InterCityRoad(id, src, dest, length, co2Limit, maxSpeed, weather);
 	}
 }

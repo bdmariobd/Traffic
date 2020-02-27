@@ -55,7 +55,8 @@ public class Junction extends SimulatedObject {
 		return exitRoads.get(j);
 	}
 	@Override
-	void advance(int time) {
+	
+	public void advance(int time) {
 		// TODO Auto-generated method stub
 		//TODO extraccion cola
 		int green = lStrategy.chooseNextGreen(entryRoads,qRoadList, gLight,gSwitchLight,time);

@@ -1,5 +1,7 @@
 package simulator.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -62,9 +64,36 @@ public class RoadMap {
 	public Vehicle getVehicle(String id) {
 		return vehMap.get(id);
 	};
-	//TODO public List<Junction>getJunctions(){};
-	//TODO public List<Roads>getRoads(){};
-	//TODO public List<Vehicle>getVehicles(){};
+	//TODO QUE CHINGO DE LISTA ES ESTO? LINKED, ARRAY??
+	public List<Junction>getJunctions(){
+		List<Junction> nList = new ArrayList<Junction>();
+		Iterator <Junction> i = lJunc.iterator();
+		while(i.hasNext()) {
+			Junction aux= i.next();
+			nList.add(aux);
+		}
+		return nList;
+	
+	}
+	//TODO Revisar estas listas q hice copiar y pegar
+	public List<Road>getRoads(){
+	List<Road> nList = new ArrayList<Road>();
+	Iterator <Road> i = lRoad.iterator();
+		while(i.hasNext()) {
+			Road aux= i.next();
+			nList.add(aux);
+		}
+		return nList;
+	};
+	public List<Vehicle>getVehicles(){
+	List<Vehicle> nList = new ArrayList<Vehicle>();
+	Iterator <Vehicle> i = lVeh.iterator();
+		while(i.hasNext()) {
+			Vehicle aux= i.next();
+			nList.add(aux);
+		}
+		return nList;
+	};
 	void reset() {
 		lJunc.clear();
 		lRoad.clear();

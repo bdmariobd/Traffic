@@ -8,13 +8,14 @@ import simulator.model.simulatedOBJ.Road;
 import simulator.model.simulatedOBJ.Vehicle;
 
 public abstract class NewRoadEvent extends Event {
-	protected Junction srcJunc, destJunc;
+	protected String srcJunc, destJunc;
 	protected int length,maxSpeed,actualMaxSpeed, co2Limit;
 	protected Weather weather;
 	protected String id;
-	NewRoadEvent(int time, String id, Junction srcJun, Junction destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
+	protected Junction src,dest;
+	NewRoadEvent(int time, String id, String srcJun, String destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
 		super(time);
-		this.srcJunc=srcJunc;
+		this.srcJunc=srcJun;
 		this.destJunc=destJunc;
 		this.maxSpeed=maxSpeed;
 		this.co2Limit=co2Limit;
@@ -25,7 +26,10 @@ public abstract class NewRoadEvent extends Event {
 
 	@Override
 	void execute(RoadMap map) throws IncorrectValues {
-		// TODO Auto-generated method stub
+		src= map.getJunction(srcJunc);
+		dest= map.getJunction(destJunc);
+		if(src==null && dest ==null) throw new IncorrectValues("No existen los cruces");
+		map.addRoad(createRoadObject());
 
 	}
 	abstract Road createRoadObject() throws IncorrectValues;

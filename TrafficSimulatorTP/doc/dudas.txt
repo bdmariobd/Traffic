@@ -1,0 +1,4 @@
+1. En teoria todas la clases a model. Queremos hacer paquetes para organizar. Los metodos ya no pueden ser protected. 
+Se pueden pasar a public?
+
+2. 
