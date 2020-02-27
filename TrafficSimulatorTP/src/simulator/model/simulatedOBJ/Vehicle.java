@@ -91,6 +91,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	public boolean validItinerary() {
 		Iterator<Junction> i = itinerary.iterator();
 		while(i.hasNext()) {
+			//TODO comprobar ultima carretera itinerario
 			Junction aux = i.next();
 			if(aux.roadTo(i.next())==null) return false;
 		}

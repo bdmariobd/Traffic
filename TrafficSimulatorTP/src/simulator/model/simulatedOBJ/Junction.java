@@ -19,7 +19,7 @@ public class Junction extends SimulatedObject {
 	private LightSwitchingStrategy lStrategy;
 	private DequeuingStrategy dqStrategy;
 	//int x,y; // coords para dibujar en la próxima práctica. UNUSED;
-	Junction(String id, LightSwitchingStrategy lsStrategy, DequeuingStrategy dqeStrategy, int xCoor, int yCoor) throws IncorrectValues{ 
+	public Junction(String id, LightSwitchingStrategy lsStrategy, DequeuingStrategy dqeStrategy, int xCoor, int yCoor) throws IncorrectValues{ 
 		super(id);
 		if(lsStrategy==null || dqeStrategy==null) throw new IncorrectValues("La estrategia es null");
 		if(xCoor<0 || yCoor<0)throw new IncorrectValues("Coordenadas negativas");
