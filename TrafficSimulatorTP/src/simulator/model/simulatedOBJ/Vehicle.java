@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Iterator;
 
 public class Vehicle extends SimulatedObject implements Comparable<Vehicle> { 
 	private List<Junction> itinerary;
@@ -87,5 +88,12 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	public int getContClass() {
 		return contClass;
 	}
-	
+	public boolean validItinerary() {
+		Iterator<Junction> i = itinerary.iterator();
+		while(i.hasNext()) {
+			Junction aux = i.next();
+			if(aux.roadTo(i.next())==null) return false;
+		}
+		return true;
+	}
 }

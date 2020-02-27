@@ -25,7 +25,7 @@ public class Junction extends SimulatedObject {
 		if(xCoor<0 || yCoor<0)throw new IncorrectValues("Coordenadas negativas");
 		this.lStrategy=lsStrategy;
 		this.dqStrategy=dqeStrategy;
-	}
+	} 
 
 	void addIncommingRoad(Road r) { // TODO Tratar los .add() ;
 		if(r.checkEntryRoad(this)) { 

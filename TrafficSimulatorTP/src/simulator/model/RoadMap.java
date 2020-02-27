@@ -47,6 +47,9 @@ public class RoadMap {
 	void addVehicle(Vehicle v) { // falta q tire except
 		lVeh.add(v);
 		if(getVehicle(v.getId())==null) {// falta comprobar la movida esa {
+			 
+			
+			
 			vehMap.put(v.getId(),v);
 		}
 	}
