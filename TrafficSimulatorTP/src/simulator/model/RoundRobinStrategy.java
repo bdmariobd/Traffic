@@ -10,6 +10,7 @@ public class RoundRobinStrategy implements LightSwitchingStrategy{
 	private int timeSlot;
 	public RoundRobinStrategy(int timeSlot) {
 		// TODO Auto-generated constructor stub
+		this.timeSlot=timeSlot;
 	}
 	@Override
 	public int chooseNextGreen(List<Road> roads, List<List<Vehicle>> qs, int currGreen, int lastSwitchingTime,
