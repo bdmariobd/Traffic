@@ -9,7 +9,7 @@ import simulator.model.simulatedOBJ.Road;
 
 public class SetWeatherEvent extends Event {
 	List<Pair<String,Weather>> ws;
-	SetWeatherEvent(int time,List<Pair<String,Weather>> ws) throws IncorrectValues {
+	public SetWeatherEvent(int time,List<Pair<String,Weather>> ws) throws IncorrectValues {
 		super(time);
 		// TODO Auto-generated constructor stub
 		if(ws==null) throw new IncorrectValues("Null list");

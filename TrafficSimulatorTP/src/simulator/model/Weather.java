@@ -16,5 +16,12 @@ public enum Weather {
 	public int getContCity() {
 		return contCity;
 	}
-	
+	public static Weather getWeatherByString(String name) {
+		if(name.equals("SUNNY")) return Weather.SUNNY;
+		if(name.equals("CLOUDY")) return Weather.CLOUDY;
+		if(name.equals("RAINY")) return Weather.RAINY;
+		if(name.equals("WINDY")) return Weather.WINDY;
+		if(name.equals("STORM")) return Weather.STORM;
+		return null;
+	}
 }
