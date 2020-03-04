@@ -3,6 +3,8 @@ package simulator.model;
 import java.util.Iterator;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import simulator.exceptions.IncorrectValues;
 import simulator.misc.SortedArrayList;
 import simulator.model.simulatedOBJ.Junction;
@@ -50,5 +52,10 @@ public class TrafficSimulator {
 		timeTick=0;
 	}
 	
-	//TODO public JSONObject report()
+	public JSONObject report() {
+		JSONObject jo= new JSONObject();
+		jo.put("time", timeTick);
+		jo.put("state", roadsMap.report());
+		return jo;
+	}
 }

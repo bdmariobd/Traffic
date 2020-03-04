@@ -58,7 +58,6 @@ public class Junction extends SimulatedObject {
 	@Override
 	
 	public void advance(int time) {
-		// TODO Auto-generated method stub
 		//TODO extraccion cola
 		int green = lStrategy.chooseNextGreen(entryRoads,qRoadList, gLight,gSwitchLight,time);
 		if(green!=gLight) {
@@ -74,11 +73,17 @@ public class Junction extends SimulatedObject {
 		jo.put("id", this._id);
 		if(gLight==-1) jo.put("green", "none");
 		else jo.put("green", entryRoads.get(gLight).getId());
-		
-		JSONArray jQ=new JSONArray();
-		//for(List<Vehicle> : qRoadList ) {
-			
-		//}
+		JSONArray queues =new JSONArray();
+		for(List<Vehicle> i : qRoadList ) {
+			JSONObject queue= new JSONObject();
+			JSONArray vehicles =new JSONArray();
+			//TODO hay que escribir la carretera de la cola. Para esto, debemos implementar un Map<Road,List<Vehicles> para facilitar la busqueta
+			queue.put("road", "rnull"); //TODO mal. Poner id carretera
+			for(Vehicle j: i) vehicles.put(j.getId());
+			queue.put("vehicles", vehicles);
+			queues.put(queue);
+		}
+		jo.put("queues", queues);		
 		return jo;
 	}
 

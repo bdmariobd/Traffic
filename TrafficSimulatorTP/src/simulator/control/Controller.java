@@ -1,7 +1,11 @@
 package simulator.control;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.Writer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,10 +41,14 @@ public class Controller {
 	public void run(int n, OutputStream out) throws IncorrectValues {
 		
 		JSONObject jo = new JSONObject();
+		JSONArray states= new JSONArray();
 		for(int i=0;i<n;++i) {
 			sim.advance();
-			
+			states.put(sim.report());
 		}
+		jo.put("states", states);
+		PrintStream p = new PrintStream(out);
+		p.println(jo.toString(3));
 	}
 	public void reset() {
 		sim.reset();

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.model.simulatedOBJ.*;
@@ -24,7 +25,7 @@ public class RoadMap {
 	//y usar las listas para recorrer los objetos en 
 	// mismo orden en el cual han sido añadidos
 	
-	RoadMap(List<Junction> lJunc,List<Road> lRoad,List<Vehicle> lVeh,Map<String,Junction> JuncMap,
+	RoadMap(List<Junction> lJunc,List<Road> lRoad,List<Vehicle> lVeh,Map<String,Junction> juncMap,
 			Map<String,Road> roadMap,Map<String,Vehicle> vehMap){
 		this.lJunc=lJunc;
 		this.lRoad=lRoad;
@@ -104,7 +105,17 @@ public class RoadMap {
 	};
 	
 	public JSONObject report() {
-		return null;
+		JSONObject jo= new JSONObject();
+		JSONArray junctions= new JSONArray();
+		for(Junction j: lJunc) junctions.put(j.report());
+		jo.put("junctions",junctions);
+		JSONArray roads= new JSONArray();
+		for(Road r: lRoad) roads.put(r.report());
+		jo.put("roads",roads);
+		JSONArray vehicles= new JSONArray();
+		for(Vehicle v: lVeh) vehicles.put(v.report());
+		jo.put("vehicles",vehicles);
+		return jo;
 	}
 	
 	
