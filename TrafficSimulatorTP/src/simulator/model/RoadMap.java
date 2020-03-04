@@ -102,7 +102,10 @@ public class RoadMap {
 		roadMap.clear();
 		vehMap.clear();
 	};
-	//public JSONObject report() {};
+	
+	public JSONObject report() {
+		return null;
+	}
 	
 	
 }

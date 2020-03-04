@@ -3,9 +3,11 @@ package simulator.model.simulatedOBJ;
 import java.util.Collections;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.exceptions.IncorrectValues;
+import simulator.model.Event;
 import simulator.model.Weather;
 
 public abstract class Road extends SimulatedObject {
@@ -75,8 +77,20 @@ public abstract class Road extends SimulatedObject {
 
 	@Override
 	public JSONObject report() {
-		// TODO Auto-generated method stub
-		return null;
+		JSONObject jo= new JSONObject();
+		jo.put("id", _id);
+		jo.put("speedlimit",this.actualMaxSpeed);
+		jo.put("weather", weather);
+		jo.put("co2", this.totalCont);
+		JSONArray ja=new JSONArray();
+		for(Vehicle v: vehicleList) {
+			ja.put(v.getId());
+		}
+		jo.put("vehicles", ja);
+		
+	
+		
+		return jo;
 	}
 
 	public void setTotalCont(int totalCont) {

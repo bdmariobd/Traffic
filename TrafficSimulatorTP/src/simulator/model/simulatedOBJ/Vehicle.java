@@ -75,8 +75,18 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 
 	@Override
 	public JSONObject report() {
-		// TODO Auto-generated method stub
-		return null;
+		JSONObject jo= new JSONObject();
+		jo.put("id", this._id);
+		if(status!=VehicleStatus.TRAVELING && Speed!=0) jo.put("speed",0); 
+		else jo.put("speed",this.Speed);
+		jo.put("distance",this.totalDistance);
+		jo.put("co2", this.totalContClass);
+		jo.put("class", this.contClass);
+		jo.put("status",this.status); //no sabemos si nos escribe el string o que
+		jo.put("road", this.road.getId());
+		jo.put("location", this.location);
+		
+		return jo;
 	}
 	
 	@Override

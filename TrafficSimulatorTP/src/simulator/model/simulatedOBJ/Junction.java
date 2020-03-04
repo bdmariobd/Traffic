@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.model.DequeuingStrategy;
@@ -69,7 +70,16 @@ public class Junction extends SimulatedObject {
 	@Override
 	public JSONObject report() {
 		// TODO Auto-generated method stub
-		return null;
+		JSONObject jo= new JSONObject();
+		jo.put("id", this._id);
+		if(gLight==-1) jo.put("green", "none");
+		else jo.put("green", entryRoads.get(gLight).getId());
+		
+		JSONArray jQ=new JSONArray();
+		//for(List<Vehicle> : qRoadList ) {
+			
+		//}
+		return jo;
 	}
 
 }

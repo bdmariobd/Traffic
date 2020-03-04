@@ -5,7 +5,7 @@ import java.util.List;
 import simulator.exceptions.IncorrectValues;
 import simulator.model.simulatedOBJ.Junction;
 import simulator.model.simulatedOBJ.Road;
-import simulator.model.simulatedOBJ.Vehicle;
+
 
 public abstract class NewRoadEvent extends Event {
 	protected String srcJunc, destJunc;

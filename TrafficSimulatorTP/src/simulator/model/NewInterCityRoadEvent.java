@@ -6,10 +6,10 @@ import simulator.model.simulatedOBJ.InterCityRoad;
 import simulator.model.simulatedOBJ.Junction;
 import simulator.model.simulatedOBJ.Road;
 
-public class NewInterCityRoad extends NewRoadEvent {
+public class NewInterCityRoadEvent extends NewRoadEvent {
 	
 	
-	public NewInterCityRoad(int time, String id, String srcJun, String destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
+	public NewInterCityRoadEvent(int time, String id, String srcJun, String destJunc, int length, int co2Limit, int maxSpeed, Weather weather) {
 		super(time, id, srcJun, destJunc, length, co2Limit, maxSpeed, weather);
 	}
 
