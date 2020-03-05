@@ -8,7 +8,7 @@ import simulator.model.Weather;
 public class NewCityRoadEventBuilder extends NewRoadEventBuilder {
 
 	
-	NewCityRoadEventBuilder(String type) {
+	public NewCityRoadEventBuilder() {
 		super("new_city_road");
 		// TODO Auto-generated constructor stub
 	}

@@ -1,6 +1,7 @@
 package simulator.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,14 +26,13 @@ public class RoadMap {
 	//y usar las listas para recorrer los objetos en 
 	// mismo orden en el cual han sido añadidos
 	
-	RoadMap(List<Junction> lJunc,List<Road> lRoad,List<Vehicle> lVeh,Map<String,Junction> juncMap,
-			Map<String,Road> roadMap,Map<String,Vehicle> vehMap){
-		this.lJunc=lJunc;
-		this.lRoad=lRoad;
-		this.lVeh=lVeh;
-		this.juncMap=juncMap;
-		this.roadMap=roadMap;
-		this.vehMap=vehMap;
+	RoadMap(){
+		lJunc= new ArrayList<Junction>();
+		lRoad= new ArrayList<Road>();
+		lVeh=new ArrayList<Vehicle>();
+		juncMap= new HashMap<String,Junction>();
+		roadMap= new HashMap<String,Road>();
+		vehMap=new HashMap<String,Vehicle>();;
 	}	
 	void addJunction(Junction j) {
 		lJunc.add(j);
