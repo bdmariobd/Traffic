@@ -47,6 +47,7 @@ public class Main {
 
 		// define the valid command line options
 		//
+		
 		Options cmdLineOptions = buildOptions();
 
 		// parse the command line as provided in args
@@ -127,7 +128,7 @@ public class Main {
 		eventBuilders.add(new SetWeatherEventBuilder());
 		_eventsFactory = new BuilderBasedFactory<>(eventBuilders); //initialize the factory
 	}
-
+	
 	private static void startBatchMode() throws IOException {
 		InputStream in = new FileInputStream(new File(_inFile));
 		OutputStream out = _outFile == null ?

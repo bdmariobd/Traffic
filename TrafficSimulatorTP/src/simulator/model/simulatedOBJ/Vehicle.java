@@ -27,6 +27,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		this.contClass=contClass;
 		totalContClass=0;
 		this.itinerary=Collections.unmodifiableList(new ArrayList<>(itinerary));
+		status= VehicleStatus.PENDING;
 	}
 	void correctValues(int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues {
 		if(maxSpeed<0) throw new IncorrectValues("Negative Speed");
@@ -69,8 +70,19 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		}
 
 	}
-	void moveToNextRoad() {
+	void moveToNextRoad() throws IncorrectValues {
 		//TODO
+		if(status !=VehicleStatus.PENDING ||status !=VehicleStatus.WAITING) 
+			throw new IncorrectValues("Vehicle cant move");
+		if(status ==VehicleStatus.PENDING) {
+			
+		}
+		else if(status ==VehicleStatus.WAITING) {
+			Junction j = road.getDestJunc();
+			
+			j.roadTo(j);
+		}
+		//road.enter(this);
 	}
 
 	@Override

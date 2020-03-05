@@ -1,5 +1,6 @@
 package simulator.model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class NewVehicleEvent extends Event {
 		this.maxSpeed=maxSpeed;
 		this.contClass=contClass;
 		this.itinerary=itinerary;
+		itineraryJunc= new ArrayList<Junction>();
 	}
 	
 
@@ -33,6 +35,7 @@ public class NewVehicleEvent extends Event {
 		}
 		Vehicle v=new Vehicle(id, maxSpeed, contClass, itineraryJunc);
 		map.addVehicle(v);
+		//TODO movetonext
 	}
 	
 	

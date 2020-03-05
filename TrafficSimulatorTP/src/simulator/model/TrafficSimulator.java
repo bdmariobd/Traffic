@@ -30,9 +30,10 @@ public class TrafficSimulator {
 		++timeTick;
 		//TODO excepcion: no se puede recorrer una lista y borrar elementos a la vez
 		// TODO arreglar : checkForComodification() threw	ConcurrentModificationException  (id=75)
-		for(Event e: eventList) {
+		for(Iterator<Event> i= eventList.iterator(); i.hasNext();  ) {
+			Event e=i.next();
 			if(e._time==timeTick) {
-				eventList.remove(e);
+				i.remove();  // Borrar elementos de una lista es borrar el iterador.
 				e.execute(roadsMap);
 			}
 		}
