@@ -70,7 +70,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		}
 
 	}
-	void moveToNextRoad() throws IncorrectValues {
+	public void moveToNextRoad() throws IncorrectValues {
 		//TODO
 		if(status !=VehicleStatus.PENDING ||status !=VehicleStatus.WAITING) 
 			throw new IncorrectValues("Vehicle cant move");
