@@ -59,14 +59,17 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		this.contClass = contClass;
 	}
 	@Override
-	void advance(int time) {
-		// TODO Auto-generated method stub
+	void advance(int time) throws IncorrectValues {
 		if(status==VehicleStatus.TRAVELING) {
 			int aux= location;
-			location= Integer.min(location+Speed, 0); //distancia de road
-			totalContClass+= contClass * (location-aux);
-			//TODO road.addContamination();
-			//TODO paso c
+			location= Integer.min(location+Speed, road.getLength()); //distancia de road
+			int c = contClass * (location-aux);
+			totalContClass+= c;
+			road.addContamination(c);
+			if(location == road.getLength()) {
+				road.getDestJunc().enter(this);
+				status=VehicleStatus.WAITING;
+			}
 		}
 
 	}

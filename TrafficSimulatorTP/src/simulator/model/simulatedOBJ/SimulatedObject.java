@@ -2,6 +2,8 @@ package simulator.model.simulatedOBJ;
 
 import org.json.JSONObject;
 
+import simulator.exceptions.IncorrectValues;
+
 public abstract class SimulatedObject  {
 
 	protected String _id;
@@ -19,7 +21,7 @@ public abstract class SimulatedObject  {
 		return _id;
 	}
 
-	abstract void advance(int time);
+	abstract void advance(int time) throws IncorrectValues;
 
 	abstract public JSONObject report();
 

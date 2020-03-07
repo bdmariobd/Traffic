@@ -131,6 +131,9 @@ public abstract class Road extends SimulatedObject {
 	public Junction getDestJunc() {
 		return destJunc;
 	}
+	public int getLength() {
+		return length;
+	}
 	
 	
 
