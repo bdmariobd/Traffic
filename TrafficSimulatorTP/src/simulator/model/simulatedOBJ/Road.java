@@ -45,7 +45,7 @@ public abstract class Road extends SimulatedObject {
 	}
 	@Override
 	
-	public void advance(int time) {
+	public void advance(int time) throws IncorrectValues {
 		reduceTotalContamination();
 		updateSpeedLimit();
 		for(Vehicle v : vehicleList) {

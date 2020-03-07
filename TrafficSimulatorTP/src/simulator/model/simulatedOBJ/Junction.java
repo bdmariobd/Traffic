@@ -1,5 +1,7 @@
 package simulator.model.simulatedOBJ;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +28,9 @@ public class Junction extends SimulatedObject {
 		if(xCoor<0 || yCoor<0)throw new IncorrectValues("Coordenadas negativas");
 		this.lStrategy=lsStrategy;
 		this.dqStrategy=dqeStrategy;
+		entryRoads= new ArrayList<Road>();
+		exitRoads= new HashMap<Junction,Road>();
+		qRoadList= new ArrayList<List<Vehicle>>();
 	} 
 
 	void addIncommingRoad(Road r) { // TODO Tratar los .add() ;

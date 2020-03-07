@@ -73,19 +73,29 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		}
 
 	}
+	//TODO testear metodo moveToNextRoad de vehicle
 	public void moveToNextRoad() throws IncorrectValues {
-		//TODO
-		if(status !=VehicleStatus.PENDING ||status !=VehicleStatus.WAITING) 
-			throw new IncorrectValues("Vehicle cant move");
-		if(status ==VehicleStatus.PENDING) {
-			
+		//TODO			
+		if(status ==VehicleStatus.PENDING) { //primera vez
+			Junction j = itinerary.get(0);
+			road = j.roadTo(itinerary.get(1));
+			road.enter(this);
+			status =VehicleStatus.TRAVELING;
 		}
-		else if(status ==VehicleStatus.WAITING) {
+		else if(status ==VehicleStatus.WAITING) { //resto de veces
 			Junction j = road.getDestJunc();
-			
-			j.roadTo(j);
+			Road ant= road;
+			road = j.roadTo(j);
+			//TODO Condicion de ultima carretera, no se si es null u otra cosa
+			if(road==null) status =VehicleStatus.ARRIVED; 
+			else {
+				status =VehicleStatus.TRAVELING;
+				road.enter(this);
+				ant.exit(this);
+			}
 		}
-		//road.enter(this);
+		throw new IncorrectValues("Vehicle cant move");
+		
 	}
 
 	@Override
@@ -97,7 +107,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		jo.put("distance",this.totalDistance);
 		jo.put("co2", this.totalContClass);
 		jo.put("class", this.contClass);
-		jo.put("status",this.status); //no sabemos si nos escribe el string o que
+		jo.put("status",this.status.toString()); //no sabemos si nos escribe el string o que
 		jo.put("road", this.road.getId());
 		jo.put("location", this.location);
 		
