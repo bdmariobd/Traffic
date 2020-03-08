@@ -1,6 +1,7 @@
 package simulator.model.simulatedOBJ;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -64,6 +65,7 @@ public class Junction extends SimulatedObject {
 	
 	public void advance(int time) {
 		//TODO extraccion cola
+		//List<Vehicle> leaving = dqStrategy.dequeue(Collections.unmodifiableList(list))
 		int green = lStrategy.chooseNextGreen(entryRoads,qRoadList, gLight,gSwitchLight,time);
 		if(green!=gLight) {
 			gLight=green;

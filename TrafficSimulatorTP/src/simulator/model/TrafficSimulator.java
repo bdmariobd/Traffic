@@ -28,8 +28,6 @@ public class TrafficSimulator {
 	//TODO METER EN METODOS ESTAS COSICAS.
 	public void advance() throws IncorrectValues {
 		++timeTick;
-		//TODO excepcion: no se puede recorrer una lista y borrar elementos a la vez
-		// TODO arreglar : checkForComodification() threw	ConcurrentModificationException  (id=75)
 		for(Iterator<Event> i= eventList.iterator(); i.hasNext();  ) {
 			Event e=i.next();
 			if(e._time==timeTick) {

@@ -1,5 +1,6 @@
 package simulator.model.simulatedOBJ;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,10 +34,13 @@ public abstract class Road extends SimulatedObject {
 		if(weather==null)throw new IncorrectValues("Null weather");
 		this.srcJunc=srcJunc;
 		this.destJunc=destJunc;
+		destJunc.addIncommingRoad(this);
+		srcJunc.addOutGoingRoad(this);
 		this.maxSpeed=maxSpeed;
 		this.contLimit=contLimit;
 		this.length=length;
 		this.weather=weather;
+		vehicleList= new ArrayList<Vehicle>();
 		totalCont=0;
 	}
 	void enter(Vehicle v) throws IncorrectValues {
@@ -62,7 +66,6 @@ public abstract class Road extends SimulatedObject {
 	public Junction getSrcJunc() {
 		return srcJunc;
 	}
-	//pruebas del github
 	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
 		vehicleList.remove(v);
 	}

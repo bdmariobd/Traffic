@@ -1,6 +1,7 @@
 package simulator.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -67,33 +68,36 @@ public class RoadMap {
 	};
 	//TODO QUE CHINGO DE LISTA ES ESTO? LINKED, ARRAY??
 	public List<Junction>getJunctions(){
-		List<Junction> nList = new ArrayList<Junction>();
+		return Collections.unmodifiableList(lJunc);
+		/*List<Junction> nList = new ArrayList<Junction>();
 		Iterator <Junction> i = lJunc.iterator();
 		while(i.hasNext()) {
 			Junction aux= i.next();
 			nList.add(aux);
 		}
-		return nList;
+		return nList;*/
 	
 	}
 	//TODO Revisar estas listas q hice copiar y pegar
 	public List<Road>getRoads(){
-	List<Road> nList = new ArrayList<Road>();
+		return Collections.unmodifiableList(lRoad);
+	/*List<Road> nList = new ArrayList<Road>();
 	Iterator <Road> i = lRoad.iterator();
 		while(i.hasNext()) {
 			Road aux= i.next();
 			nList.add(aux);
 		}
-		return nList;
+		return nList;*/
 	};
 	public List<Vehicle>getVehicles(){
-	List<Vehicle> nList = new ArrayList<Vehicle>();
+		return Collections.unmodifiableList(lVeh);
+	/*List<Vehicle> nList = new ArrayList<Vehicle>();
 	Iterator <Vehicle> i = lVeh.iterator();
 		while(i.hasNext()) {
 			Vehicle aux= i.next();
 			nList.add(aux);
 		}
-		return nList;
+		return nList;*/
 	};
 	void reset() {
 		lJunc.clear();

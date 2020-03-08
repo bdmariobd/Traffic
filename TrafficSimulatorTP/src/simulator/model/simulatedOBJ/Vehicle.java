@@ -94,7 +94,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 				ant.exit(this);
 			}
 		}
-		throw new IncorrectValues("Vehicle cant move");
+		else throw new IncorrectValues("Vehicle cant move");
 		
 	}
 
