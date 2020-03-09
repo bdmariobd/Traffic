@@ -37,6 +37,7 @@ public abstract class Road extends SimulatedObject {
 		destJunc.addIncommingRoad(this);
 		srcJunc.addOutGoingRoad(this);
 		this.maxSpeed=maxSpeed;
+		this.actualMaxSpeed= maxSpeed;
 		this.contLimit=contLimit;
 		this.length=length;
 		this.weather=weather;
@@ -53,12 +54,7 @@ public abstract class Road extends SimulatedObject {
 		reduceTotalContamination();
 		updateSpeedLimit();
 		for(Vehicle v : vehicleList) {
-			try {
-				v.setSpeed(calculateVehicleSpeed(v));
-			} catch (IncorrectValues e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			v.setSpeed(calculateVehicleSpeed(v));
 			v.advance(time);
 		}
 		Collections.sort(vehicleList);

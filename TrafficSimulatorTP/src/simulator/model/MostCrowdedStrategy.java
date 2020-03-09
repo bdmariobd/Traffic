@@ -14,14 +14,11 @@ public class MostCrowdedStrategy implements LightSwitchingStrategy {
 	@Override
 	public int chooseNextGreen(List<Road> roads, List<List<Vehicle>> qs, int currGreen, 
 			int lastSwitchingTime,int currTime) {
-		// TODO Auto-generated method stub
-		
 		if(roads.isEmpty()) return -1; //empty
-		
 		if(currGreen==-1) { //all red
 			//funciona¿?
 			Iterator<List<Vehicle>> it= qs.iterator();
-			int max= it.next().size();
+			int max= -1;
 			while(it.hasNext()) {
 				int aux= it.next().size();
 				if(aux>max) max= aux;
@@ -29,8 +26,17 @@ public class MostCrowdedStrategy implements LightSwitchingStrategy {
 			return max;
 		}
 		if(currTime-lastSwitchingTime<timeSlot) return currGreen;
-		//TODO paso 4
-		return 0;
+		//TODO comprobar este paso esta bien
+		int i= (currGreen +1)%roads.size(),initial =i, max=-1;
+		boolean finish=false;
+		while(!finish) {
+			int aux= qs.get(i).size();
+			if(aux>max) max= aux;
+			++i;
+			if(i==initial) finish=true;
+			if(i==qs.size()) i=0;
+		}
+		return max;
 	}
 
 }

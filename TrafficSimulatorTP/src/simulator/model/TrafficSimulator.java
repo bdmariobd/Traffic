@@ -35,6 +35,7 @@ public class TrafficSimulator {
 				e.execute(roadsMap);
 			}
 		}
+		//TODO revisar
 		List<Junction> juncs=roadsMap.getJunctions();
 		Iterator<Junction> j= juncs.iterator();
 		while(j.hasNext()) {

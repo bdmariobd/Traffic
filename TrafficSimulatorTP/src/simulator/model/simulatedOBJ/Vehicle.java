@@ -63,6 +63,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		if(status==VehicleStatus.TRAVELING) {
 			int aux= location;
 			location= Integer.min(location+Speed, road.getLength()); //distancia de road
+			totalDistance+=(location-aux);
 			int c = contClass * (location-aux);
 			totalContClass+= c;
 			road.addContamination(c);
@@ -87,7 +88,10 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 			Road ant= road;
 			road = j.roadTo(j);
 			//TODO Condicion de ultima carretera, no se si es null u otra cosa
-			if(road==null) status =VehicleStatus.ARRIVED; 
+			if(road==null) {
+				status =VehicleStatus.ARRIVED; 
+				ant.exit(this);
+			}
 			else {
 				status =VehicleStatus.TRAVELING;
 				road.enter(this);

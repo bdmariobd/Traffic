@@ -13,7 +13,7 @@ public class NewCityRoadEvent extends NewRoadEvent {
 
 	@Override
 	Road createRoadObject() throws IncorrectValues {
-		return new CityRoad(id, src, dest, length, co2Limit, maxSpeed, weather);
+		return new CityRoad(id, src, dest, maxSpeed, co2Limit, length, weather);
 	}
 	
 }

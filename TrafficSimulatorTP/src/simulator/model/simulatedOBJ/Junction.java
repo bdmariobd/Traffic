@@ -22,6 +22,7 @@ public class Junction extends SimulatedObject {
 	private int gLight, gSwitchLight;
 	private LightSwitchingStrategy lStrategy;
 	private DequeuingStrategy dqStrategy;
+	private Map<Road, List<Vehicle>> entryRoadAndQueue;
 	//int x,y; // coords para dibujar en la próxima práctica. UNUSED;
 	public Junction(String id, LightSwitchingStrategy lsStrategy, DequeuingStrategy dqeStrategy, int xCoor, int yCoor) throws IncorrectValues{ 
 		super(id);
@@ -31,6 +32,7 @@ public class Junction extends SimulatedObject {
 		this.dqStrategy=dqeStrategy;
 		entryRoads= new ArrayList<Road>();
 		exitRoads= new HashMap<Junction,Road>();
+		entryRoadAndQueue= new HashMap<Road,List<Vehicle>>();
 		qRoadList= new ArrayList<List<Vehicle>>();
 	} 
 
@@ -39,6 +41,7 @@ public class Junction extends SimulatedObject {
 			if(entryRoads.add(r)) {
 			List<Vehicle> l = new LinkedList<Vehicle>();
 			qRoadList.add(l);
+			entryRoadAndQueue.put(r,l);
 			}	
 		}
 	}
@@ -56,6 +59,7 @@ public class Junction extends SimulatedObject {
 		}
 	}
 	void enter(Vehicle V) throws IncorrectValues {
+		//TODO esto creo que no es
 		V.enterARoad();
 	}
 	Road roadTo(Junction j) {
@@ -63,10 +67,18 @@ public class Junction extends SimulatedObject {
 	}
 	@Override
 	
-	public void advance(int time) {
+	public void advance(int time) throws IncorrectValues {
 		//TODO extraccion cola
-		//List<Vehicle> leaving = dqStrategy.dequeue(Collections.unmodifiableList(list))
-		int green = lStrategy.chooseNextGreen(entryRoads,qRoadList, gLight,gSwitchLight,time);
+		if(gLight!=-1&& !entryRoadAndQueue.isEmpty()) {
+			List<Vehicle> leaving= qRoadList.get(gLight);
+			if(leaving!=null) {
+				leaving = dqStrategy.dequeue(Collections.unmodifiableList(qRoadList.get(gLight)));
+				for(Vehicle v : leaving) v.moveToNextRoad();
+			}
+		}
+		//semaforo
+		int green = lStrategy.chooseNextGreen(Collections.unmodifiableList(entryRoads),
+				Collections.unmodifiableList(qRoadList), gLight,gSwitchLight,time);
 		if(green!=gLight) {
 			gLight=green;
 			gSwitchLight=time;
@@ -81,15 +93,15 @@ public class Junction extends SimulatedObject {
 		if(gLight==-1) jo.put("green", "none");
 		else jo.put("green", entryRoads.get(gLight).getId());
 		JSONArray queues =new JSONArray();
-		for(List<Vehicle> i : qRoadList ) {
+		for(Road r:entryRoads) {
 			JSONObject queue= new JSONObject();
 			JSONArray vehicles =new JSONArray();
-			//TODO hay que escribir la carretera de la cola. Para esto, debemos implementar un Map<Road,List<Vehicles> para facilitar la busqueta
-			queue.put("road", "rnull"); //TODO mal. Poner id carretera
-			for(Vehicle j: i) vehicles.put(j.getId());
+			for(Vehicle j: entryRoadAndQueue.get(r)) vehicles.put(j.getId());
 			queue.put("vehicles", vehicles);
+			queue.put("road", r.getId());
 			queues.put(queue);
 		}
+
 		jo.put("queues", queues);		
 		return jo;
 	}

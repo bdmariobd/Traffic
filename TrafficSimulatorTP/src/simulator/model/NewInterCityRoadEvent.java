@@ -16,6 +16,6 @@ public class NewInterCityRoadEvent extends NewRoadEvent {
 	@Override
 	Road createRoadObject() throws IncorrectValues {
 		// TODO Auto-generated method stub
-		return new InterCityRoad(id, src, dest, length, co2Limit, maxSpeed, weather);
+		return new InterCityRoad(id, src, dest,maxSpeed, co2Limit, length, weather);
 	}
 }
