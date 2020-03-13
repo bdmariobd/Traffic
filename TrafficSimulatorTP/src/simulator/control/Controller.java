@@ -42,9 +42,11 @@ public class Controller {
 		
 		JSONObject jo = new JSONObject();
 		JSONArray states= new JSONArray();
+		//PrintStream p = new PrintStream(out);
 		for(int i=0;i<n;++i) {
 			sim.advance();
 			states.put(sim.report());
+			//p.println(sim.report().toString(3));
 		}
 		jo.put("states", states);
 		PrintStream p = new PrintStream(out);

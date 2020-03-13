@@ -17,7 +17,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	private int maxSpeed,Speed, location,contClass,totalContClass,totalDistance;
 	private VehicleStatus status;
 	private Road road;
-	
+	private int itineraryIndex;
 	
 	public Vehicle(String id, int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues{
 		super(id);
@@ -28,6 +28,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		totalContClass=0;
 		this.itinerary=Collections.unmodifiableList(new ArrayList<>(itinerary));
 		status= VehicleStatus.PENDING;
+		itineraryIndex=0;
 	}
 	void correctValues(int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues {
 		if(maxSpeed<0) throw new IncorrectValues("Negative Speed");
@@ -52,7 +53,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	//public/protected??
 	public void setSpeed(int speed) throws IncorrectValues {
 		if(speed<0) throw new IncorrectValues("Negative Speed");
-		Speed = speed;
+		if(status==VehicleStatus.TRAVELING) Speed = speed;
 	}
 	public void setContClass(int contClass) throws IncorrectValues {
 		if(contClass>10 && contClass<0) throw new IncorrectValues("Incorrect contClass");
@@ -70,6 +71,8 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 			if(location == road.getLength()) {
 				road.getDestJunc().enter(this);
 				status=VehicleStatus.WAITING;
+				Speed=0;
+				++itineraryIndex;
 			}
 		}
 
@@ -78,21 +81,22 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	public void moveToNextRoad() throws IncorrectValues {
 		//TODO			
 		if(status ==VehicleStatus.PENDING) { //primera vez
-			Junction j = itinerary.get(0);
-			road = j.roadTo(itinerary.get(1));
+			Junction j = itinerary.get(itineraryIndex);
+			road = j.roadTo(itinerary.get(itineraryIndex+1));
 			road.enter(this);
 			status =VehicleStatus.TRAVELING;
+			location=0;
 		}
 		else if(status ==VehicleStatus.WAITING) { //resto de veces
-			Junction j = road.getDestJunc();
+			Junction j = itinerary.get(itineraryIndex);
 			Road ant= road;
-			road = j.roadTo(j);
-			//TODO Condicion de ultima carretera, no se si es null u otra cosa
-			if(road==null) {
+			if(itineraryIndex+1>=itinerary.size()) {
 				status =VehicleStatus.ARRIVED; 
 				ant.exit(this);
 			}
 			else {
+				road = j.roadTo(itinerary.get(itineraryIndex+1));
+				location=0;
 				status =VehicleStatus.TRAVELING;
 				road.enter(this);
 				ant.exit(this);

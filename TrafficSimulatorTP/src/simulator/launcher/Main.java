@@ -38,7 +38,7 @@ import simulator.model.TrafficSimulator;
 
 public class Main {
 	private final static Integer _timeLimitDefaultValue = 10;
-	private static Integer _timeLimit = null; // número de pasos
+	private static Integer _timeLimit; // número de pasos
 	private static String _inFile = null;
 	private static String _outFile = null;
 	private static Factory<Event> _eventsFactory = null;
@@ -58,6 +58,7 @@ public class Main {
 			parseHelpOption(line, cmdLineOptions);
 			parseInFileOption(line);
 			parseOutFileOption(line);
+			parseTicksOption(line);
 
 			// if there are some remaining arguments, then something wrong is
 			// provided in the command line!
@@ -84,6 +85,8 @@ public class Main {
 		cmdLineOptions.addOption(
 				Option.builder("o").longOpt("output").hasArg().desc("Output file, where reports are written.").build());
 		cmdLineOptions.addOption(Option.builder("h").longOpt("help").desc("Print this message").build());
+		cmdLineOptions.addOption(Option.builder("t").longOpt("ticks").hasArg().desc("Ticks to the simulator’s main "
+				+ "loop (default value is 10).").build());
 
 		return cmdLineOptions;
 	}
@@ -106,7 +109,12 @@ public class Main {
 	private static void parseOutFileOption(CommandLine line) throws ParseException {
 		_outFile = line.getOptionValue("o");
 	}
-
+	private static void parseTicksOption(CommandLine line) throws ParseException {
+		if(line.hasOption("t")) {
+			_timeLimit = Integer.parseInt(line.getOptionValue("t"));
+		}
+		else _timeLimit = _timeLimitDefaultValue;
+	}
 	private static void initFactories() {
 		//SEMAFORO
 		ArrayList<Builder<LightSwitchingStrategy>> lsbs = new ArrayList<>();
@@ -137,8 +145,7 @@ public class Main {
 		try {
 			Controller ctrl = new Controller(sim, _eventsFactory);
 			ctrl.loadEvents(in);
-			ctrl.run(_timeLimitDefaultValue, out); 
-			//TODO cambiar por _timeLimit(la que se lee por argumentos)
+			ctrl.run(_timeLimit, out); 
 		}
 		catch(IncorrectValues e) {
 			System.out.println("Simulation failed! ("+ e.toString()+")");

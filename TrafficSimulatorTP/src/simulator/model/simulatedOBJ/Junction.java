@@ -60,7 +60,7 @@ public class Junction extends SimulatedObject {
 	}
 	void enter(Vehicle V) throws IncorrectValues {
 		//TODO esto creo que no es
-		V.enterARoad();
+		entryRoadAndQueue.get(V.getRoad()).add(V);
 	}
 	Road roadTo(Junction j) {
 		return exitRoads.get(j);
@@ -73,7 +73,10 @@ public class Junction extends SimulatedObject {
 			List<Vehicle> leaving= qRoadList.get(gLight);
 			if(leaving!=null) {
 				leaving = dqStrategy.dequeue(Collections.unmodifiableList(qRoadList.get(gLight)));
-				for(Vehicle v : leaving) v.moveToNextRoad();
+				for(Vehicle v : leaving) {
+					entryRoadAndQueue.get(v.getRoad()).remove(v);
+					v.moveToNextRoad();
+				}
 			}
 		}
 		//semaforo
