@@ -140,4 +140,8 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		}
 		return true;
 	}
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+	
 }

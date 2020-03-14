@@ -14,7 +14,7 @@ public class CityRoad extends Road {
 	@Override
 	void reduceTotalContamination() {
 		// TODO Auto-generated method stub
-		setTotalCont(getTotalCont()-getWeather().getContCity());
+		setTotalCont((int)Math.ceil(getTotalCont()-getWeather().getContCity()));
 		if(getTotalCont()<0) setTotalCont(0);
 	}
 
@@ -26,7 +26,8 @@ public class CityRoad extends Road {
 	@Override
 	int calculateVehicleSpeed(Vehicle v) {
 		// TODO Auto-generated method stub
-		double p2 =(11.0-v.getContClass())/11.0*getActualMaxSpeed();
+		double p2 =Math.ceil((11.0-v.getContClass())/11.0*getActualMaxSpeed());
+		if(p2>v.getMaxSpeed()) return v.getMaxSpeed();
 		return (int)p2;
 		
 	}
