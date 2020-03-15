@@ -18,7 +18,7 @@ public class TestExamples {
 
 	static PrintStream nullStream = new PrintStream(new OutputStream() {
 
-		@Override
+		@Override 
 		public void write(int b) throws IOException {
 		}
 	});

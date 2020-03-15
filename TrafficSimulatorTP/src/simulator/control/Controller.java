@@ -39,18 +39,25 @@ public class Controller {
 		}
 	}
 	public void run(int n, OutputStream out) throws IncorrectValues {
-		
-		JSONObject jo = new JSONObject();
-		JSONArray states= new JSONArray();
-		//PrintStream p = new PrintStream(out);
-		for(int i=0;i<n;++i) {
-			sim.advance();
-			states.put(sim.report());
-			//p.println(sim.report().toString(3));
+		if (out == null) {
+			out = new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {}
+			};
 		}
-		jo.put("states", states);
 		PrintStream p = new PrintStream(out);
-		p.println(jo.toString(3));
+		p.println("{");
+		p.println(" \"states\": [");
+		for(int i=0;i<n-1;++i) {
+			sim.advance();
+			p.print(sim.report()); 
+			p.println(",");
+		}
+		//ultimo paso
+		sim.advance();
+		p.print(sim.report());
+		p.println("]");
+		p.println("}");
 	}
 	public void reset() {
 		sim.reset();
