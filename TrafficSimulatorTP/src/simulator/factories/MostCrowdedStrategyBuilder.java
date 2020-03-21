@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import simulator.model.LightSwitchingStrategy;
 import simulator.model.MostCrowdedStrategy;
-import simulator.model.RoundRobinStrategy;
 
 public class MostCrowdedStrategyBuilder extends Builder<LightSwitchingStrategy> {
 

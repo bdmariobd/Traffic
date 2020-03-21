@@ -11,7 +11,6 @@ import simulator.exceptions.IncorrectValues;
 import simulator.misc.Pair;
 import simulator.model.Event;
 import simulator.model.NewSetContClassEvent;
-import simulator.model.RoadMap;
 
 public class SetContClassEventBuilder extends Builder<Event> {
 

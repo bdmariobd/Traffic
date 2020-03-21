@@ -20,7 +20,7 @@ public class NewJunctionEvent extends Event {
 	}
 	@Override
 	void execute(RoadMap map) throws IncorrectValues {
-		Junction j=new Junction(id, lsStrategy, dqStrategy, xCoor, xCoor);
+		Junction j=new Junction(id, lsStrategy, dqStrategy, xCoor, yCoor);
 		map.addJunction(j);
 	}
 	

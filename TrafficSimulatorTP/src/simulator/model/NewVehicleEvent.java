@@ -17,15 +17,13 @@ public class NewVehicleEvent extends Event {
 	
 	
 	public NewVehicleEvent(int time, String id, int maxSpeed, int contClass, List<String> itinerary) {
-		super(time); // ...
+		super(time);
 		this.id=id;
 		this.maxSpeed=maxSpeed;
 		this.contClass=contClass;
 		this.itinerary=itinerary;
 		itineraryJunc= new ArrayList<Junction>();
 	}
-	
-
 	@Override
 	void execute(RoadMap map) throws IncorrectValues {
 		Iterator <String> i = itinerary.iterator();
@@ -37,6 +35,4 @@ public class NewVehicleEvent extends Event {
 		map.addVehicle(v);
 		v.moveToNextRoad();
 	}
-	
-	
 }

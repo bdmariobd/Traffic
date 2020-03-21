@@ -1,8 +1,5 @@
 package simulator.factories;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +23,7 @@ public class NewJunctionEventBuilder extends Builder<Event> {
 
 	@Override
 	protected Event createTheInstance(JSONObject data) throws JSONException, IncorrectValues {
-		JSONArray coords = data.getJSONArray("coor"); // se podria usar una pareja perfectamente pero me da palo
-		//TODO extraer las estrategias
+		JSONArray coords = data.getJSONArray("coor");
 		LightSwitchingStrategy ls= lssFactory.createInstance(data.getJSONObject("ls_strategy"));
 		DequeuingStrategy ds = dqsFactory.createInstance(data.getJSONObject("dq_strategy"));
 		return new NewJunctionEvent(data.getInt("time"), data.getString("id"), ls, ds ,coords.getInt(0), coords.getInt(1));

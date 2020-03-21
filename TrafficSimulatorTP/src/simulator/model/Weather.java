@@ -1,6 +1,7 @@
 package simulator.model;
 
 public enum Weather {
+	//guardamos los numeros necesarios para calcular valores y no tener muchos if que comprueben el weather
 	SUNNY(2,2), CLOUDY(3,2), RAINY(10,2), WINDY(15,10), STORM(20,10);
 	private int contInterCity, contCity;
 
@@ -17,6 +18,7 @@ public enum Weather {
 		return contCity;
 	}
 	public static Weather getWeatherByString(String name) {
+		//se puede sustituir por valueOf, no caimos
 		if(name.equals("SUNNY")) return Weather.SUNNY;
 		if(name.equals("CLOUDY")) return Weather.CLOUDY;
 		if(name.equals("RAINY")) return Weather.RAINY;

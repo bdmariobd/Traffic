@@ -3,7 +3,6 @@ package simulator.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ public class RoadMap {
 	private Map<String,Junction> juncMap;
 	private Map<String,Road> roadMap;
 	private Map<String,Vehicle> vehMap;
-	
 	
 	//Recuerda tener actualizadas las listas y los mapas para usar los mapas en 
 	//pro de la eficiencia de la búsqueda de un objeto;
@@ -41,19 +39,16 @@ public class RoadMap {
 			juncMap.put(j.getId(), j);
 		}
 	}
-	void addRoad(Road r) { // falta que tire excep
+	void addRoad(Road r) {
 		lRoad.add(r);
 		if(getRoad(r.getId())==null && juncMap.containsValue(r.getSrcJunc()) && 
 				juncMap.containsValue(r.getDestJunc())) {
 			roadMap.put(r.getId(),r);
 		}
 	}
-	void addVehicle(Vehicle v) { // falta q tire except
+	void addVehicle(Vehicle v) {
 		lVeh.add(v);
-		if(getVehicle(v.getId())==null) {// falta comprobar la movida esa {
-			 
-			
-			
+		if(getVehicle(v.getId())==null) {
 			vehMap.put(v.getId(),v);
 		}
 	}
@@ -66,38 +61,15 @@ public class RoadMap {
 	public Vehicle getVehicle(String id) {
 		return vehMap.get(id);
 	};
-	//TODO QUE CHINGO DE LISTA ES ESTO? LINKED, ARRAY??
 	public List<Junction>getJunctions(){
-		return Collections.unmodifiableList(lJunc);
-		/*List<Junction> nList = new ArrayList<Junction>();
-		Iterator <Junction> i = lJunc.iterator();
-		while(i.hasNext()) {
-			Junction aux= i.next();
-			nList.add(aux);
-		}
-		return nList;*/
-	
+		return Collections.unmodifiableList(lJunc);	
 	}
 	//TODO Revisar estas listas q hice copiar y pegar
 	public List<Road>getRoads(){
 		return Collections.unmodifiableList(lRoad);
-	/*List<Road> nList = new ArrayList<Road>();
-	Iterator <Road> i = lRoad.iterator();
-		while(i.hasNext()) {
-			Road aux= i.next();
-			nList.add(aux);
-		}
-		return nList;*/
 	};
 	public List<Vehicle>getVehicles(){
 		return Collections.unmodifiableList(lVeh);
-	/*List<Vehicle> nList = new ArrayList<Vehicle>();
-	Iterator <Vehicle> i = lVeh.iterator();
-		while(i.hasNext()) {
-			Vehicle aux= i.next();
-			nList.add(aux);
-		}
-		return nList;*/
 	};
 	void reset() {
 		lJunc.clear();

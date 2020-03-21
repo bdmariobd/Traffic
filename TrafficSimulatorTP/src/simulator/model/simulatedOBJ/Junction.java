@@ -36,7 +36,7 @@ public class Junction extends SimulatedObject {
 		qRoadList= new ArrayList<List<Vehicle>>();
 	} 
 
-	void addIncommingRoad(Road r) { // TODO Tratar los .add() ;
+	void addIncommingRoad(Road r) {
 		if(r.checkEntryRoad(this)) { 
 			if(entryRoads.add(r)) {
 			List<Vehicle> l = new LinkedList<Vehicle>();
@@ -59,16 +59,13 @@ public class Junction extends SimulatedObject {
 		}
 	}
 	void enter(Vehicle V) throws IncorrectValues {
-		//TODO esto creo que no es
 		entryRoadAndQueue.get(V.getRoad()).add(V);
 	}
 	Road roadTo(Junction j) {
 		return exitRoads.get(j);
 	}
 	@Override
-	
 	public void advance(int time) throws IncorrectValues {
-		//TODO extraccion cola
 		if(gLight!=-1&& !entryRoadAndQueue.isEmpty()) {
 			List<Vehicle> leaving= qRoadList.get(gLight);
 			if(leaving!=null) {
@@ -79,7 +76,6 @@ public class Junction extends SimulatedObject {
 				}
 			}
 		}
-		//semaforo
 		int green = lStrategy.chooseNextGreen(Collections.unmodifiableList(entryRoads),
 				Collections.unmodifiableList(qRoadList), gLight,gSwitchLight,time);
 		if(green!=gLight) {
@@ -90,7 +86,6 @@ public class Junction extends SimulatedObject {
 
 	@Override
 	public JSONObject report() {
-		// TODO Auto-generated method stub
 		JSONObject jo= new JSONObject();
 		jo.put("id", this._id);
 		if(gLight==-1) jo.put("green", "none");
@@ -104,7 +99,6 @@ public class Junction extends SimulatedObject {
 			queue.put("road", r.getId());
 			queues.put(queue);
 		}
-
 		jo.put("queues", queues);		
 		return jo;
 	}

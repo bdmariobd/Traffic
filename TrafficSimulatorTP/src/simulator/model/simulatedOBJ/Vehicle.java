@@ -8,7 +8,6 @@ import simulator.model.VehicleStatus;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Iterator;
 
@@ -21,7 +20,6 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	
 	public Vehicle(String id, int maxSpeed, int contClass,	List<Junction> itinerary) throws IncorrectValues{
 		super(id);
-		// TODO complete
 		correctValues(maxSpeed, contClass, itinerary);
 		this.maxSpeed= maxSpeed;
 		this.contClass=contClass;
@@ -34,24 +32,20 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		if(maxSpeed<0) throw new IncorrectValues("Negative Speed");
 		if(contClass>10 && contClass<0) throw new IncorrectValues("Incorrect contClass");
 		if(itinerary.size()<2) throw new IncorrectValues("Not enought Junctions");
-		
 	}
-	
-	public Boolean initial() {
+	Boolean initial() {
 		return location==0 && Speed==0;
 	}
-	public void enterARoad() throws IncorrectValues {
+	void enterARoad() throws IncorrectValues {
 		road.enter(this);
 	}
-	
-	public Road getRoad() {
+	Road getRoad() {
 		return road;
 	}
 	public void setRoad(Road road) {
 		this.road = road;
 	}
-	//public/protected??
-	public void setSpeed(int speed) throws IncorrectValues {
+	void setSpeed(int speed) throws IncorrectValues {
 		if(speed<0) throw new IncorrectValues("Negative Speed");
 		if(status==VehicleStatus.TRAVELING) Speed = speed;
 	}
@@ -75,11 +69,8 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 				++itineraryIndex;
 			}
 		}
-
 	}
-	//TODO testear metodo moveToNextRoad de vehicle
-	public void moveToNextRoad() throws IncorrectValues {
-		//TODO			
+	public void moveToNextRoad() throws IncorrectValues {		
 		if(status ==VehicleStatus.PENDING) { //primera vez
 			Junction j = itinerary.get(itineraryIndex);
 			road = j.roadTo(itinerary.get(itineraryIndex+1));
@@ -103,9 +94,7 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 			}
 		}
 		else throw new IncorrectValues("Vehicle cant move");
-		
 	}
-
 	@Override
 	public JSONObject report() {
 		JSONObject jo= new JSONObject();
@@ -118,10 +107,8 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 		jo.put("status",this.status.toString()); //no sabemos si nos escribe el string o que
 		jo.put("road", this.road.getId());
 		jo.put("location", this.location);
-		
 		return jo;
 	}
-	
 	@Override
 	public int compareTo(Vehicle v) {
 		if(this.location==v.location) return 0;
@@ -134,13 +121,12 @@ public class Vehicle extends SimulatedObject implements Comparable<Vehicle> {
 	public boolean validItinerary() {
 		Iterator<Junction> i = itinerary.iterator();
 		while(i.hasNext()) {
-			//TODO comprobar ultima carretera itinerario
 			Junction aux = i.next();
 			if(aux.roadTo(i.next())==null) return false;
 		}
 		return true;
 	}
-	public int getMaxSpeed() {
+	int getMaxSpeed() {
 		return maxSpeed;
 	}
 	

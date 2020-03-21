@@ -1,9 +1,7 @@
 package simulator.model;
 
 import simulator.exceptions.IncorrectValues;
-import simulator.model.simulatedOBJ.CityRoad;
 import simulator.model.simulatedOBJ.InterCityRoad;
-import simulator.model.simulatedOBJ.Junction;
 import simulator.model.simulatedOBJ.Road;
 
 public class NewInterCityRoadEvent extends NewRoadEvent {
@@ -15,7 +13,6 @@ public class NewInterCityRoadEvent extends NewRoadEvent {
 
 	@Override
 	Road createRoadObject() throws IncorrectValues {
-		// TODO Auto-generated method stub
 		return new InterCityRoad(id, src, dest,maxSpeed, co2Limit, length, weather);
 	}
 }

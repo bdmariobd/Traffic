@@ -1,7 +1,5 @@
 package simulator.model;
 
-import java.util.List;
-
 import simulator.exceptions.IncorrectValues;
 import simulator.model.simulatedOBJ.Junction;
 import simulator.model.simulatedOBJ.Road;

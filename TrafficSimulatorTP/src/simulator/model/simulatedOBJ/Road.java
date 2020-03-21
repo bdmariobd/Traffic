@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.exceptions.IncorrectValues;
-import simulator.model.Event;
 import simulator.model.Weather;
 
 public abstract class Road extends SimulatedObject {
@@ -16,14 +15,10 @@ public abstract class Road extends SimulatedObject {
 	private int length,maxSpeed,actualMaxSpeed, contLimit,totalCont;
 	private Weather weather;
 	private List<Vehicle> vehicleList;
-
-
-
+	
 	abstract void reduceTotalContamination();
 	abstract void updateSpeedLimit();
 	abstract int calculateVehicleSpeed(Vehicle v);
-
-	
 	
 	Road(String id, Junction srcJunc, Junction destJunc, int maxSpeed, int contLimit, int length, Weather weather) throws IncorrectValues {
 		super(id);
@@ -49,7 +44,6 @@ public abstract class Road extends SimulatedObject {
 		vehicleList.add(v);
 	}
 	@Override
-	
 	public void advance(int time) throws IncorrectValues {
 		reduceTotalContamination();
 		updateSpeedLimit();
@@ -62,7 +56,7 @@ public abstract class Road extends SimulatedObject {
 	public Junction getSrcJunc() {
 		return srcJunc;
 	}
-	void exit(Vehicle v) { // Igual se puede añadir una exception ya que remove es boolean
+	void exit(Vehicle v) {
 		vehicleList.remove(v);
 	}
 	public void setWeather(Weather w)throws IncorrectValues {
@@ -86,12 +80,8 @@ public abstract class Road extends SimulatedObject {
 			ja.put(v.getId());
 		}
 		jo.put("vehicles", ja);
-		
-	
-		
 		return jo;
 	}
-
 	public void setTotalCont(int totalCont) {
 		this.totalCont = totalCont;
 	}
@@ -103,7 +93,6 @@ public abstract class Road extends SimulatedObject {
 	}
 	@Override
 	public int compareTo(SimulatedObject o) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	public int getContLimit() {
@@ -133,8 +122,4 @@ public abstract class Road extends SimulatedObject {
 	public int getLength() {
 		return length;
 	}
-	
-	
-
-
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import simulator.exceptions.IncorrectValues;
 import simulator.misc.Pair;
-import simulator.model.simulatedOBJ.Road;
 import simulator.model.simulatedOBJ.Vehicle;
 
 public class NewSetContClassEvent extends Event {
@@ -17,7 +16,6 @@ public class NewSetContClassEvent extends Event {
 	}
 	@Override
 	void execute(RoadMap map) throws IncorrectValues {
-		// TODO Auto-generated method stub
 		Iterator <Pair<String,Integer>> i= cs.iterator();
 		while(i.hasNext()) {
 			Pair<String,Integer> aux= i.next();

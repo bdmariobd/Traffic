@@ -1,15 +1,11 @@
 package simulator.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import simulator.model.simulatedOBJ.Vehicle;
 
 public class MoveFirstStrategy implements DequeuingStrategy {
-
-	public MoveFirstStrategy() {
-	}
 
 	@Override
 	public List<Vehicle> dequeue(List<Vehicle> q) {

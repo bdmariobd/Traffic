@@ -17,7 +17,6 @@ public class TrafficSimulator {
 	private int timeTick=0;
 	
 	public TrafficSimulator() {
-		//TODO Inicializar a valores por defecto.
 		eventList = new SortedArrayList<Event>();
 		roadsMap = new RoadMap();
 	}
@@ -25,7 +24,6 @@ public class TrafficSimulator {
 	public void addEvent(Event e) {
 		eventList.add(e);
 	}
-	//TODO METER EN METODOS ESTAS COSICAS.
 	public void advance() throws IncorrectValues {
 		++timeTick;
 		for(Iterator<Event> i= eventList.iterator(); i.hasNext();  ) {
@@ -35,7 +33,6 @@ public class TrafficSimulator {
 				e.execute(roadsMap);
 			}
 		}
-		//TODO revisar
 		List<Junction> juncs=roadsMap.getJunctions();
 		Iterator<Junction> j= juncs.iterator();
 		while(j.hasNext()) {

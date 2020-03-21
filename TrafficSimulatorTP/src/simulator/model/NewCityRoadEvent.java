@@ -2,7 +2,6 @@ package simulator.model;
 
 import simulator.exceptions.IncorrectValues;
 import simulator.model.simulatedOBJ.CityRoad;
-import simulator.model.simulatedOBJ.Junction;
 import simulator.model.simulatedOBJ.Road;
 
 public class NewCityRoadEvent extends NewRoadEvent {

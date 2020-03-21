@@ -15,7 +15,6 @@ public abstract class SimulatedObject  {
 	public String getId() {
 		return _id;
 	}
-
 	@Override
 	public String toString() {
 		return _id;
@@ -26,7 +25,6 @@ public abstract class SimulatedObject  {
 	abstract public JSONObject report();
 
 	public int compareTo(SimulatedObject o) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -16,7 +16,6 @@ public class MostCrowdedStrategy implements LightSwitchingStrategy {
 			int lastSwitchingTime,int currTime) {
 		if(roads.isEmpty()) return -1; //empty
 		if(currGreen==-1) { //all red
-			//funciona¿?
 			Iterator<List<Vehicle>> it= qs.iterator();
 			int max= -1;
 			while(it.hasNext()) {
@@ -26,7 +25,6 @@ public class MostCrowdedStrategy implements LightSwitchingStrategy {
 			return max;
 		}
 		if(currTime-lastSwitchingTime<timeSlot) return currGreen;
-		//TODO comprobar este paso esta bien
 		int i= (currGreen +1)%roads.size(),initial =i, max=-1;
 		boolean finish=false;
 		while(!finish) {

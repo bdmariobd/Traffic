@@ -10,7 +10,6 @@ public class NewCityRoadEventBuilder extends NewRoadEventBuilder {
 	
 	public NewCityRoadEventBuilder() {
 		super("new_city_road");
-		// TODO Auto-generated constructor stub
 	}
 	protected Event createTheRoad(int time, String id, String src, String dest, int length, int co2Limit, int maxspeed,
 			Weather weather) {
